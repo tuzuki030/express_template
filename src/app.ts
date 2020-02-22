@@ -18,6 +18,5 @@ app.use('/', indexRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(404).send();
-  // next(new Error());
 });
 module.exports = app;
