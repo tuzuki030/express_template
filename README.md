@@ -29,16 +29,13 @@ APIの動作確認はPostman(https://www.postman.com)がお勧めです。
 ## ファイルストラクチャ
 srcディレクトリ配下を実装すれば良いようになってます。
 ```
-src/
-├── app.ts
-├── controllers # ビジネスロジックを記述します
-│   ├── HogeController.ts
-│   └── index.ts
-├── middlewares # ミドルウェアを記述します。(とりあえずディレクトリだけ)
-└── routes # ルーティングを記述します
-    ├── foo.ts
-    └── index.ts
-
+src
+├── controllers # リクエストとレスポンスを処理します。実際のロジックはなるべくservicesに任せること。
+├── helpers # 複数箇所で使い回すような、シンプルな便利関数を記述します
+├── interfaces # Typescriptの型定義を記述します
+├── middlewares # Expressnのミドルウェアを記述します。
+├── routes # ルーティングを記述します
+└── services # ビジネスロジックを記述します
 ```
 
 ## TODO
