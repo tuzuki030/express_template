@@ -38,6 +38,21 @@ src
 └── services # ビジネスロジックを記述します
 ```
 
+## ログ
+ログフレームワークにlog4jsを採用しています。
+- https://www.npmjs.com/package/log4js
+
+各種ファイルの場所はこちら。
+- 出力先
+    - log/
+- 設定ファイル
+    - config/log4js.json
+
+このテンプレートでは次のサンプルをコピペして組み込みました。
+- https://github.com/log4js-node/log4js-example
+
+次のリクエストを投げるとerrors.logを出力できます。
+- GET localhost:3000/errorSample
+
 ## TODO
-- ロギング
 - ユニットテスト
