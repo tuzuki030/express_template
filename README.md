@@ -99,6 +99,8 @@ npm update @types/serve-static --depth 2
 
 ## mysql2
 
+https://www.npmjs.com/package/mysql2
+
 - 設定ファイル:
   - /config/mysql.json
 - 関数化
@@ -116,4 +118,78 @@ db_connection.query(
     results = results;
   }
 );
+```
+
+## ユニットテスト--jest
+
+jest を typescript で使うhttps://github.com/kulshekhar/ts-jest
+
+1. install
+
+```bash
+npm install -D jest ts-jest @types/jest
+```
+
+2. packae.json 　スクリプトの追加
+
+```json
+  "scripts": {
+		...
++    "test": "jest"
+  },
+```
+
+3. config の設定
+
+```bash
+npx ts-jest config:init
+```
+
+`/jest.config.js` 生成された
+テストファイルを指定する roots, プロジェクトの root は`<rootDir>`
+
+```js
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+module.exports = {
+  preset: "ts-jest",
+  testEnvironment: "node",
+  roots: ["<rootDir>/src"],
+};
+```
+
+4. test ファイルは`src/tests`に置く
+
+テスト例:
+
+math.ts
+
+```ts
+const add = (a: number, b: number) => {
+  return a + b;
+};
+
+export { add };
+```
+
+math.test.ts
+
+```ts
+import { add } from "./math";
+
+test("add", () => {
+  expect(add(1, 2)).toBe(3);
+});
+```
+
+`npm run test`を実行したら
+
+```bash
+ PASS  src/tests/add.test.ts
+  √ add (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        4.115 s
+Ran all test suites.
 ```
