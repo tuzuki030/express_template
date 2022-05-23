@@ -98,3 +98,22 @@ npm update @types/serve-static --depth 2
 ```
 
 ## mysql2
+
+- 設定ファイル:
+  - /config/mysql.json
+- 関数化
+  - /src/helpers/DBHelper.ts
+
+使用例:
+
+```ts
+import { db_connection } from "../helpers/DBHelper";
+
+let results;
+db_connection.query(
+  "SELECT COUNT(*) FROM `tweets`;",
+  (err, results, fields) => {
+    results = results;
+  }
+);
+```
