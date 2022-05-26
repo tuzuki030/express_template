@@ -1,4 +1,4 @@
-import { add } from "./math";
+import { add } from "../src/helpers/math";
 
 describe("math test", () => {
   test("add", () => {
@@ -6,6 +6,6 @@ describe("math test", () => {
   });
 
   test("add", () => {
-    expect(add(1, 1)).toBe(1);
+    expect(add(1, 1)).toBe(2);
   });
 });
