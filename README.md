@@ -2,21 +2,32 @@
 
 WebAPI サーバーとして利用することを想定した Express のテンプレートです。
 
-## 前準備
-
+# 前準備
+## 依存ファイルをインストールします。
 ```
 npm install
 ```
 
-## サーバー起動
+## .envを作成
+`.env.example`をコピーして`.env`ファイルを作成してください。
+```bash
+$ cp .env.example .env
+```
 
+## MySQL起動
+Dockerを使ってDBを起動します。
+```bash
+$ cd docker
+$ docker-compose up -d
+```
+
+# サーバー起動
+Typescript のコンパイルと Express の起動をします。<br>
+起動中、ソースコードを修正したら即座に反映されます。
 ```
 npm run dev
 ```
 
-Typescript のコンパイルと Express の起動をします。
-
-起動中、ソースコードを修正したら即座に反映されます。
 
 ## 動作確認
 
@@ -39,6 +50,7 @@ src ディレクトリ配下を実装すれば良いようになってます。
 src
 ├── controllers # リクエストとレスポンスを処理します。実際のロジックはなるべくservicesに任せること。
 ├── helpers # 複数箇所で使い回すような、シンプルな便利関数を記述します
+├── models # DBに関するモデルを記述します。
 ├── interfaces # Typescriptの型定義を記述します
 ├── middlewares # Expressnのミドルウェアを記述します。
 ├── routes # ルーティングを記述します
@@ -133,7 +145,7 @@ npm install -D jest ts-jest @types/jest
 2. packae.json 　スクリプトの追加
 
 ```json
-  "scripts": {
+  "scripts" : {
 		...
 +    "test": "jest"
   },

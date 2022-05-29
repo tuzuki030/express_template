@@ -1,13 +1,11 @@
 import mysql from "mysql2";
-import fs from "fs";
+import "dotenv/config";
 
-const path = process.cwd() + "/config/mysql.json";
-const config = JSON.parse(fs.readFileSync(path, "utf8"));
 const db_connection = mysql.createConnection({
-  host: config.host,
-  user: config.user,
-  database: config.database,
-  password: config.password,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
 });
 
 export { db_connection };
