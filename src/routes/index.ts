@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as foo from "./foo";
 import { HogeController } from "../controllers";
-import { db_connection } from "../helpers/DBHelper";
+import { db_pool } from "../helpers/DBHelper";
 
 export const router = express.Router();
 
@@ -16,14 +16,9 @@ router.get("/errorSample", hogeController.errorResponse);
 router.use("/foo", foo.router);
 
 //test mysql2
-router.get("/db", (req, res, next) => {
-  db_connection.query(
-    "SELECT COUNT(*) FROM `tweets`;",
-    (err, results, fields) => {
-      results = results;
+router.get("/db", async (req, res, next) => {
+  const results = await db_pool.query("SELECT COUNT(*) FROM `tweets`;");
 
-      res.status(200);
-      res.json({ text: results });
-    }
-  );
+  res.status(200);
+  res.json({ text: results });
 });
